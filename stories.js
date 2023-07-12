@@ -65,22 +65,15 @@ function putStoriesOnPage() {
 
     favoriteStar.addEventListener('click', function() {
       event.preventDefault();
-      this.classList.remove('far');
-      this.classList.add('fas');
-    })
-    if (favoriteStar.className === ('fas')) {
-      favoriteStar.removeClass('fas');
-      favoriteStar.addClass('far')
-    
-
-    }
-      
-    
-    
-  }
+      if (favoriteStar.classList.contains('fas')) {
+        favoriteStar.classList.remove('fas');
+        favoriteStar.classList.add('far')
+      }
+      else {
+        this.classList.remove('far')
+      } 
+  })
 
   $allStoriesList.show();
 }
-
-
-
+}
