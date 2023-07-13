@@ -2,6 +2,7 @@
 
 // This is the global list of the stories, an instance of StoryList
 let storyList;
+const favArray = [];
 
 /** Get and show stories when site first loads. */
 
@@ -23,7 +24,9 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
+  
   return $(`
+      
       <li id="${story.storyId}">
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
@@ -54,7 +57,7 @@ function putStoriesOnPage() {
   console.debug("putStoriesOnPage");
 
   $allStoriesList.empty();
-
+  
   // loop through all of our stories and generate HTML for them
   for (let story of storyList.stories) {
     const $story = generateStoryMarkup(story);
@@ -64,16 +67,23 @@ function putStoriesOnPage() {
     $allStoriesList.append($story);
 
     favoriteStar.addEventListener('click', function() {
-      event.preventDefault();
+     
       if (favoriteStar.classList.contains('fas')) {
+        //storyList is an array of all of the stories that are on the page
+        //if the star is clicked it's colored in and pushed to the favArray
+        
+        const favoriteList = document.getElementById('favorites')
+    
+
+
         favoriteStar.classList.remove('fas');
         favoriteStar.classList.add('far')
       }
       else {
-        this.classList.remove('far')
+        this.classList.remove('far');
+        this.classList.add('fas');
       } 
   })
-
   $allStoriesList.show();
 }
 }
